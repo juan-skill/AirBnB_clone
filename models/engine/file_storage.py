@@ -3,6 +3,13 @@
 
 
 from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
+#from models import *
 import json
 
 class FileStorage:
@@ -39,7 +46,13 @@ class FileStorage:
     def reload(self):
         """doc"""
 
-        nc = {"BaseModel": BaseModel}
+        nc = {"BaseModel": BaseModel,
+              "User": User,
+              "Place": Place,
+              "State": State,
+              "City": City,
+              "Amenity": Amenity,
+              "Review": Review}
 
         try:
             with open(FileStorage.__file_path, mode='r', encoding="UTF-8") as f:
