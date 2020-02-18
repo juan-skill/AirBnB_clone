@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ This module represent the User definition. """
 
-From models.base_model import BaseModel
+from models.base_model import BaseModel
 
 
 class User(BaseModel):
