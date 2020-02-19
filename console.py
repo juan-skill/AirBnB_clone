@@ -4,16 +4,22 @@
 
 import cmd
 from models import storage
-#from models.base_model import BaseModel
-from models.base_model import *
+from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
+
 
 
 class HBNBCommand(cmd.Cmd):
     """Simple command processor example."""
 
     prompt = "(hbnb) "
-    class_check = {"BaseModel", "User", "State", "City",
-                   "Amenity", "Place", "Review"}
+    class_check = ["BaseModel", "User", "State", "City",
+                   "Amenity", "Place", "Review"]
 
     def do_quit(self, line):
         """Quit command to exit the program\n"""
@@ -34,11 +40,13 @@ class HBNBCommand(cmd.Cmd):
             SyntaxError: when there is no args given
             NameError: when there is no object taht has the name
         """
+        print(args)
         if not args:
             print("** class name missing **")
         elif args in HBNBCommand.class_check:
 
             lists = args.split()
+            print('list[0]===', lists[0])
             obj = eval("{}()".format(lists[0]))
             obj.save()
             print(obj.id)
