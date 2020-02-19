@@ -5,15 +5,20 @@
 import cmd
 from models import storage
 from models.base_model import BaseModel
-
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
     """Simple command processor example."""
 
     prompt = "(hbnb) "
-    class_check = {"BaseModel", "User", "State", "City",
-                   "Amenity", "Place", "Review"}
+    class_check = ["BaseModel", "User", "State", "City",
+                   "Amenity", "Place", "Review"]
 
     def do_quit(self, line):
         """Quit command to exit the program\n"""
@@ -30,9 +35,6 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """ Creates a new instance of BaseModel, saves it
         (to the JSON file) and prints the id.
-        Exceptions:
-            SyntaxError: when there is no args given
-            NameError: when there is no object taht has the name
         """
         if not args:
             print("** class name missing **")
@@ -48,7 +50,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, args):
-        """ Prints the string representation of an instance based on the class name"""
+        """ Prints the string representation of an instance based on
+        the class name.
+        """
         args = args.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -61,9 +65,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         all_objs = storage.all()
-        #print(all_objs)
         key = args[0] + '.' + args[1]
-        #print(key)
         if key in all_objs:
                 print(all_objs[key])
         else:
@@ -83,7 +85,6 @@ class HBNBCommand(cmd.Cmd):
             return
 
         all_objs = storage.all()
- #       print(all_objs)
         key = args[0] + '.' + args[1]
         if key in all_objs:
             all_objs.pop(key)
@@ -104,9 +105,7 @@ class HBNBCommand(cmd.Cmd):
             if len(obj_list) != 0:
                 print(obj_list)
         else:
-            #print('args===', args)
             args = args.split()
-            #print('args split ===', args)
             if args[0] in HBNBCommand.class_check:
 
                 obj_list = []
@@ -143,11 +142,8 @@ class HBNBCommand(cmd.Cmd):
         value = str(args[3]).strip("\"':")
         all_objs = storage.all()
         for obj_id in all_objs.keys():
-            print('obj_id===args[1] ====', obj_id, args[1])
             name = obj_id.split('.')
-            print('name===', name)
             if name[1] == args[1]:
-
                 setattr(all_objs[obj_id], args[2], value)
                 storage.save()
                 return
@@ -155,6 +151,4 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
-
-
     HBNBCommand().cmdloop()
