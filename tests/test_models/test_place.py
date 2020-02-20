@@ -23,7 +23,14 @@ class TestStringMethods(unittest.TestCase):
         cls.place.city_id = "5463-abcd"
         cls.place.user_id = "34222-ddcba"
         cls.place.name = "Betty Holberton"
-        cls.place.longitude = 100.3
+        cls.place.description = "Adrian Hernandez"
+        cls.place.number_rooms = 10
+        cls.place.number_bathrooms = 1
+        cls.place.max_guest = 607360
+        cls.place.price_by_night = 5
+        cls.place.latitude = 100.3
+        cls.place.longitude = 98.3
+        cls.place.amenity_ids = ["Betty-98"]
 
     def test_pep8_conformance(self):
         """Test that we conform to PEP8."""
@@ -40,7 +47,15 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue('city_id' in self.place.__dict__)
         self.assertTrue('user_id' in self.place.__dict__)
         self.assertTrue('name' in self.place.__dict__)
+        self.assertTrue('description' in self.place.__dict__)
+        self.assertTrue('number_rooms' in self.place.__dict__)
+        self.assertTrue('number_bathrooms' in self.place.__dict__)
+        self.assertTrue('max_guest' in self.place.__dict__)
+        self.assertTrue('price_by_night' in self.place.__dict__)
+        self.assertTrue('latitude' in self.place.__dict__)
         self.assertTrue('longitude' in self.place.__dict__)
+        self.assertTrue('amenity_ids' in self.place.__dict__)
+
 
     def test_is_subclass_Place(self):
         """ if Place is subclass of Basemodel"""
