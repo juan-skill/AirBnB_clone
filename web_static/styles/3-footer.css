@@ -4,10 +4,16 @@ footer{
     width: 100%;
     border-top: 1px solid #CCCCCC;
     display: grid;
-    position: absolute;
+    position: fixed;
     bottom: 0;
 }
 
 footer p{
-    margin: auto;
+    /*margin: auto;*/
+    position: absolute;
+    text-align: center;
+    top: 10%;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
